@@ -11,7 +11,7 @@ const Body = () => {
             <img src={folder} className='w-16' />
             <span className='text-white font-medium text-sm'>Abdelmalek</span>
         </div>
-        {showFolder && <Folder setShowFolder={()=>setShowFolder(false)}/>}
+        {showFolder && <Folder setShowFolder={()=>setShowFolder(false)} folderName={"Abdelmalek"}/>}
         
     </div>
   )

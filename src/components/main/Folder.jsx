@@ -2,7 +2,7 @@ import React from 'react';
 import { FaXmark, FaFolder} from 'react-icons/fa6';
 import { RiInformation2Line } from 'react-icons/ri';
 
-const Folder = ({ setShowFolder }) => {
+const Folder = ({ setShowFolder,folderName }) => {
   const items = [
     { id: 1, icon: <FaFolder className="text-blue-500" />, label: 'AI & DS' },
     { id: 2, icon: <FaFolder className="text-blue-500" />, label: 'Web Dev' },
@@ -43,7 +43,7 @@ const Folder = ({ setShowFolder }) => {
         </div>
         <div className="flex flex-col justify-center items-center max-w-lg relative w-full text-white min-h-[50%] rounded-r-xl bg-gray-800 shadow-sm shadow-black">
             <nav className='flex flex-row top-0 justify-between items-center w-full px-3 py-4 absolute border-b border-opacity-30 border-black'>
-                <span className='font-bold text-sm'>Abdelmalek</span>
+                <span className='font-bold text-sm'>{folderName}</span>
                 <ul className="flex items-center space-x-3 text-lg">
                     <li className="cursor-pointer font-bold"><RiInformation2Line /></li>
                 </ul>
