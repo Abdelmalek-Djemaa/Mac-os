@@ -38,7 +38,7 @@ const Camera = ({ setShowCamera }) => {
   };
 
   return (
-    <div className="relative bg-black max-w-xl w-full h-full max-h-[430px] flex flex-col items-center justify-center rounded-xl z-[998]">
+    <div className="relative bg-black max-w-xl w-full h-full sm:max-h-[430px] max-h-[330px]  flex flex-col items-center justify-center rounded-xl z-[998]">
       <div className="absolute top-2 w-full flex justify-center items-center">
         <span className="font-medium text-sm text-white z-[1000]">
           Photo Booth
