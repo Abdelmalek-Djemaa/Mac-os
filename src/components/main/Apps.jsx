@@ -4,7 +4,7 @@ import bg from "../../assets/ventura.webp";
 import photobooth from "../../assets/photobooth.png"
 import { FaSearch } from 'react-icons/fa';
 
-const Apps = () => {
+const Apps = ({setShowCamera}) => {
   return (
     <motion.div 
       className="fixed w-full top-0 left-0 right-0 bottom-0 h-full flex justify-center items-center"
@@ -37,8 +37,8 @@ const Apps = () => {
             </div>
         </div>
         <div className='flex flex-wrap justify-start items-start w-full h-full sm:p-32 py-32 px-8'>
-            <div className='flex flex-col justify-center items-center'>
-                <img src={photobooth} className='sm:w-20 w-16' />
+            <div className='flex flex-col justify-center items-center' onClick={setShowCamera}>
+                <img src={photobooth} className='sm:w-[70px] w-16' />
                 <span className='text-white font-medium text-sm'>Photo Booth</span>
             </div>
         </div>

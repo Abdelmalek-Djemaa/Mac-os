@@ -4,10 +4,17 @@ import finder from "../../assets/finder.svg";
 import launchpad from "../../assets/launchpad.webp";
 import Apps from './Apps';
 import Folder from './Folder';
+import Camera from '../Apps/Camera';
 
 const Bottombar = () => {
   const [showApps, setShowApps] = useState(false);
   const [showFinder, setShowFinder] = useState(false);
+  const [showCamera, setShowCamera] = useState(false);
+
+  const handleShowCamera = () => {
+    setShowApps(false); // Close apps when showing the camera
+    setShowCamera(true);
+  };
 
   return (
     <div className='relative'>
@@ -31,10 +38,15 @@ const Bottombar = () => {
           <Folder setShowFolder={() => setShowFinder(false)} folderName={"Finder"} />
         </div>
       )}
+      {showCamera && (
+        <div className="fixed top-0 bottom-0 right-0 left-0 flex justify-center items-center p-4">
+          <Camera setShowCamera={() => setShowCamera(false)} />
+        </div>
+      )}
 
       <AnimatePresence>
         {showApps && (
-          <Apps />
+          <Apps setShowCamera={handleShowCamera} />
         )}
       </AnimatePresence>
     </div>
