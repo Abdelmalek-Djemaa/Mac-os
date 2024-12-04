@@ -28,8 +28,8 @@ const Camera = ({ setShowCamera }) => {
   }, []);
 
   return (
-    <div className="relative bg-black max-w-xl w-full min-h-[400px] flex flex-col items-center justify-center rounded-xl">
-        <div className="absolute top-0 left-0 mb-2 p-2.5 flex w-full bg-gray-800 rounded-t-xl">
+    <div className="relative bg-black max-w-xl w-full min-h-[400px] flex flex-col items-center justify-center rounded-xl z-[998]">
+        <div className="absolute top-0 left-0 mb-2 p-2.5 flex w-full bg-gray-800 rounded-t-xl z-[999]">
             <div
               className="group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-pointer"
               onClick={() => setShowCamera(false)}
@@ -41,7 +41,7 @@ const Camera = ({ setShowCamera }) => {
             <div className="ml-2 sm:h-3 sm:w-3 h-2.5 w-2.5 bg-orange-300 rounded-full"></div>
             <div className="ml-2 sm:h-3 sm:w-3 h-2.5 w-2.5 bg-green-500 rounded-full"></div>
         </div>
-      <video ref={videoRef} autoPlay playsInline style={{ width: '100%', height: 'auto' }} />
+      <video ref={videoRef} autoPlay playsInline style={{ width: '100%', height: 'auto', borderRadius: '0.75rem' }} />
     </div>
   );
 };
