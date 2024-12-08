@@ -1,19 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Loading from './components/Laoding';
-import Splash from './components/Splash';
+import React, { useEffect, useState } from 'react';
+import { Navigate, useRoutes } from 'react-router-dom';
+import Loading from './components/Loading';
 import Home from './components/main/Home';
 
 const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Loading />} />
-        <Route path="/Splash" element={<Splash />} />
-        <Route path="/Home" element={<Home />} />
-      </Routes>
-    </Router>
-  );
+
+  return useRoutes([
+    { path: "/", element: <Loading /> },
+    { path: "/Home", element: <Home /> },
+  ]);
 };
 
 export default App;
