@@ -100,7 +100,7 @@ const Topbar = () => {
                 <div className="h-px bg-gray-400 my-1"></div>
 
                 <li
-                  className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-pointer"
+                  className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default"
                   onClick={handleLogout}
                 >
                   Log Out

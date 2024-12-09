@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaXmark, FaFolder } from 'react-icons/fa6';
 import { RiInformation2Line } from 'react-icons/ri';
 import Draggable from "react-draggable";
+
 const Folder = ({ setShowFolder, folderName }) => {
   const items = [
     { id: 1, icon: <FaFolder className="text-blue-500" />, label: 'AI & DS' },
@@ -9,7 +10,12 @@ const Folder = ({ setShowFolder, folderName }) => {
     { id: 3, icon: <FaFolder className="text-blue-500" />, label: 'Optimization' },
   ];
 
-  const finderRef = useRef(null); 
+  const [selectedItem, setSelectedItem] = useState(null); // State to track the selected item
+  const finderRef = useRef(null);
+
+  const handleItemClick = (itemLabel) => {
+    setSelectedItem(itemLabel); // Update the selected item when clicked
+  };
 
   return (
     <div className="fixed w-full h-full flex justify-center items-center p-4">
@@ -19,7 +25,7 @@ const Folder = ({ setShowFolder, folderName }) => {
             <div className="iteractive top-0 left-0 mb-2 p-4 flex relative">
               <div
                 className="group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-pointer z-10"
-                onClick={setShowFolder} 
+                onClick={setShowFolder}
               >
                 <span className="hidden group-hover:block sm:text-[10px] text-[8px] text-gray-900 font-bold">
                   <FaXmark />
@@ -36,6 +42,7 @@ const Folder = ({ setShowFolder, folderName }) => {
                 <li
                   key={item.id}
                   className="flex items-center w-full py-2 sm:px-4 px-2 text-white cursor-pointer hover:bg-gray-600 rounded-md"
+                  onClick={() => handleItemClick(item.label)} // Set the selected item when clicked
                 >
                   <div className="mr-2">{item.icon}</div>
                   <span className="sm:text-[12px] text-[9px]">{item.label}</span>
@@ -52,6 +59,14 @@ const Folder = ({ setShowFolder, folderName }) => {
                 </li>
               </ul>
             </nav>
+            <div className="flex justify-center items-center w-full h-full p-4">
+              {/* Display selected item name on the right */}
+              {selectedItem ? (
+                <h2 className="text-xl text-white">{selectedItem}</h2>
+              ) : (
+                <h2 className="text-xl text-gray-400">Select an item to view details</h2>
+              )}
+            </div>
           </div>
         </div>
       </Draggable>
