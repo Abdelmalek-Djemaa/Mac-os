@@ -42,7 +42,7 @@ const Camera = ({ setShowCamera }) => {
   return (
     <div className='fixed top-0 bottom-0 right-0 left-0 flex justify-center items-center p-4'>
       <Draggable nodeRef={cameraRef} cancel=".iteractive">
-        <div className="relative bg-black max-w-xl w-full h-full sm:max-h-[430px] max-h-[330px] flex flex-col items-center justify-center rounded-xl z-[998]" ref={cameraRef}>
+        <div className="relative bg-black max-w-xl w-full h-full sm:max-h-[430px] max-h-[330px] flex flex-col items-center justify-center rounded-xl z-[998] shadow-sm shadow-black" ref={cameraRef}>
           <div className="absolute top-2 w-full flex justify-center items-center">
             <span className="font-medium text-sm text-white z-[1000]">
               Photo Booth

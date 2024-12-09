@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import logo from "../../assets/apple.svg";
 import { IoBatteryDead, IoBatteryFull, IoBatteryHalf } from 'react-icons/io5';
+import About from './About';
 
 const Topbar = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [batteryLevel, setBatteryLevel] = useState(null);
   const [menuVisible, setMenuVisible] = useState(false);
-  const navigate = useNavigate(); // Initialize the navigate function
+  const [showAbout, setShowAbout] = useState(false);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -85,7 +87,11 @@ const Topbar = () => {
           {menuVisible && (
             <div className="absolute top-6 -left-6 bg-black bg-opacity-50 border border-gray-400 text-white w-52 shadow-lg rounded-lg sm:text-sm text-[10px] p-0.5">
               <ul className="p-1">
-                <li className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default">About This Mac</li>
+                <li className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default"
+                onClick={() => setShowAbout(true)}
+                >
+                  About This Mac
+                </li>
                 <div className="h-px bg-gray-400 my-1"></div>
 
                 <li
@@ -111,6 +117,7 @@ const Topbar = () => {
           </div>
         </div>
       </nav>
+      {showAbout && <About setShowAbout={()=>setShowAbout(false)} />}
     </div>
   );
 };
