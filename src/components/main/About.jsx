@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { FaXmark } from 'react-icons/fa6';
+import macbook from '../../assets/macbook.png'
 
 const About = ({ setShowAbout }) => {
   const [processor, setProcessor] = useState('Unknown');
@@ -77,19 +78,23 @@ const About = ({ setShowAbout }) => {
                     <div className="ml-2 sm:h-3 sm:w-3 h-2.5 w-2.5 bg-orange-300 rounded-full"></div>
                     <div className="ml-2 sm:h-3 sm:w-3 h-2.5 w-2.5 bg-green-500 rounded-full"></div>
                 </div>
-                <h2 className="text-lg text-center font-bold mb-4">About This Device</h2>
-                <div className="space-y-3">
-                    <div className="flex justify-between items-center pb-1">
+                <div className='flex flex-col justify-center items-center mb-8'>
+                    <img src={macbook} className='w-32' />
+                    <span className="text-lg text-center font-bold">Macbook Pro</span>
+                    <span className="text-[10px] text-gray-300">macOS Ventura </span>
+                </div>
+                <div className="space-y-2">
+                    <div className="flex justify-between items-center">
                         <span className="text-left">Processor</span>
                         <span className="text-gray-300 text-right">{processor}</span>
                     </div>
 
-                    <div className="flex justify-between items-center pb-1">
+                    <div className="flex justify-between items-center">
                         <span className="text-left">Graphics</span>
                         <span className="text-gray-300 w-[60%]  text-right">{graphics}</span>
                     </div>
 
-                    <div className="flex justify-between items-center pb-1">
+                    <div className="flex justify-between items-center">
                         <span className="text-left">Memory</span>
                         <span className="text-gray-300 text-right">{memory}</span>
                     </div>
@@ -98,6 +103,12 @@ const About = ({ setShowAbout }) => {
                         <span className="text-left">Operating System</span>
                         <span className="text-gray-300 text-right">{navigator.platform}</span>
                     </div>
+                </div>
+                <div className='flex flex-col justify-center items-center mt-8 text-[10px] text-gray-300'>
+                    <span>Copyright © All rights reserved.</span>
+                    <a href="https://abdelmalek-djemaa.vercel.app" className="underline">
+                    <span> djemaa abdelmalek </span>
+                    </a>
                 </div>
             </div>
         </Draggable>

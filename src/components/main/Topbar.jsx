@@ -68,6 +68,10 @@ const Topbar = () => {
     navigate('/');
   };
 
+  const handleAboutClick = () => {
+    setMenuVisible(false);  // Hide the menu when "About" is clicked
+    setShowAbout(true);      // Show the About component
+  };
 
   return (
     <div>
@@ -87,8 +91,9 @@ const Topbar = () => {
           {menuVisible && (
             <div className="absolute top-6 -left-6 bg-black bg-opacity-50 border border-gray-400 text-white w-52 shadow-lg rounded-lg sm:text-sm text-[10px] p-0.5">
               <ul className="p-1">
-                <li className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default"
-                onClick={() => setShowAbout(true)}
+                <li
+                  className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default"
+                  onClick={handleAboutClick} // Trigger About and hide the menu
                 >
                   About This Mac
                 </li>
@@ -117,7 +122,7 @@ const Topbar = () => {
           </div>
         </div>
       </nav>
-      {showAbout && <About setShowAbout={()=>setShowAbout(false)} />}
+      {showAbout && <About setShowAbout={() => setShowAbout(false)} />}
     </div>
   );
 };
