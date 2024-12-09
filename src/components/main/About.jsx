@@ -58,7 +58,7 @@ const About = ({ setShowAbout }) => {
     } else if (/Mediatek/i.test(userAgent) || /MT\d+/i.test(userAgent)) {
       setProcessor('MediaTek Processor');
     } else {
-      setProcessor('Processor info not available');
+      setProcessor('CPU info not available');
     }
   }, []);
 
@@ -104,7 +104,7 @@ const About = ({ setShowAbout }) => {
                         <span className="text-gray-300 text-right">{navigator.platform}</span>
                     </div>
                 </div>
-                <div className='flex flex-col justify-center items-center mt-8 text-[10px] text-gray-300'>
+                <div className='flex flex-col justify-center items-center mt-8 text-[10px] text-gray-300 interactive'>
                     <span>Copyright © All rights reserved.</span>
                     <a href="https://abdelmalek-djemaa.vercel.app" className="underline">
                     <span> djemaa abdelmalek </span>

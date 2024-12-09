@@ -107,14 +107,14 @@ const Topbar = () => {
             <div className="absolute top-7 -left-6 bg-black bg-opacity-40 backdrop-blur-md shadow-xl  border-black border-opacity-20 text-white w-52 rounded-lg sm:text-[12px] text-[10px] p-0.5">
               <ul className="p-1">
                 <li
-                  className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default"
+                  className="p-1 rounded-md hover:bg-blue-400 cursor-default"
                   onClick={handleAboutClick}
                 >
                   About This Mac
                 </li>
 
                 <li
-                  className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default"
+                  className="p-1 rounded-md hover:bg-blue-400 cursor-default"
                   onClick={handleLogout}
                 >
                   Shut Down...
