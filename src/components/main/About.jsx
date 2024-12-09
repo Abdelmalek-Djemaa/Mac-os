@@ -65,7 +65,7 @@ const About = ({ setShowAbout }) => {
   return (
     <div className="fixed w-full h-full top-0 left-0 flex justify-center items-center z-20 p-4">
         <Draggable nodeRef={aboutRef} cancel=".interactive">
-            <div className=" text-white max-w-[270px] text-[12px] p-6 rounded-lg shadow-xl relative bg-black bg-opacity-30 backdrop-blur-md" ref={aboutRef}>
+            <div className=" text-white max-w-[270px] w-full text-[12px] p-6 rounded-lg shadow-xl relative bg-black bg-opacity-30 backdrop-blur-md" ref={aboutRef}>
                 <div className="interactive absolute top-0 left-0 p-2.5 flex w-full z-[999]">
                     <div
                         className="group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-pointer z-[1000]"
