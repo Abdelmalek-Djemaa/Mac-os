@@ -64,7 +64,7 @@ const Folder = ({ setShowFolder, folderName }) => {
               {selectedItem ? (
                 <h2 className="text-xl text-white">{selectedItem}</h2>
               ) : (
-                <h2 className="text-xl text-gray-400">Select an item to view details</h2>
+                <h2 className="text-xl text-gray-400 text-center">Select an item to view details</h2>
               )}
             </div>
           </div>

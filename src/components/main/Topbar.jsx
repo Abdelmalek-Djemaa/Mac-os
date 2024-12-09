@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import logo from "../../assets/apple.svg";
-import { IoBatteryDead, IoBatteryFull, IoBatteryHalf } from 'react-icons/io5';
+import { IoBatteryCharging, IoBatteryDead, IoBatteryFull, IoBatteryHalf } from 'react-icons/io5';
 import About from './About';
 
 const Topbar = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [batteryLevel, setBatteryLevel] = useState(null);
+  const [batteryCharging, setBatteryCharging] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
-  const navigate = useNavigate(); 
+  const [batteryInfoVisible, setBatteryInfoVisible] = useState(false);  // New state for battery info modal
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -23,15 +25,18 @@ const Topbar = () => {
     const getBattery = async () => {
       try {
         const battery = await navigator.getBattery();
-        const updateBatteryLevel = () => {
+        const updateBatteryStatus = () => {
           setBatteryLevel(Math.round(battery.level * 100));
+          setBatteryCharging(battery.charging);
         };
 
-        updateBatteryLevel();
-        battery.addEventListener('levelchange', updateBatteryLevel);
+        updateBatteryStatus();
+        battery.addEventListener('levelchange', updateBatteryStatus);
+        battery.addEventListener('chargingchange', updateBatteryStatus);
 
         return () => {
-          battery.removeEventListener('levelchange', updateBatteryLevel);
+          battery.removeEventListener('levelchange', updateBatteryStatus);
+          battery.removeEventListener('chargingchange', updateBatteryStatus);
         };
       } catch (error) {
         console.error("Battery API not supported or failed to fetch:", error);
@@ -54,11 +59,13 @@ const Topbar = () => {
   });
 
   const getBatteryIcon = () => {
+    if (batteryCharging) return <IoBatteryCharging />;
     if (batteryLevel === null) return <IoBatteryDead />;
     if (batteryLevel > 75) return <IoBatteryFull />;
     if (batteryLevel > 25) return <IoBatteryHalf />;
     return <IoBatteryDead />;
   };
+  
 
   const handleLogoClick = () => {
     setMenuVisible((prev) => !prev);
@@ -69,8 +76,16 @@ const Topbar = () => {
   };
 
   const handleAboutClick = () => {
-    setMenuVisible(false);  // Hide the menu when "About" is clicked
-    setShowAbout(true);      // Show the About component
+    setMenuVisible(false);
+    setShowAbout(true);
+  };
+
+  const handleBatteryClick = () => {
+    setBatteryInfoVisible((prev) => !prev);  // Toggle the battery info modal visibility
+  };
+
+  const getBatterySource = () => {
+    return batteryCharging ? "Charging" : "On Battery";
   };
 
   return (
@@ -85,25 +100,24 @@ const Topbar = () => {
           />
           <ul className="flex items-center space-x-3 text-sm">
             <li className="font-bold">Finder</li>
-            <li className="">File</li>
+            <li>File</li>
           </ul>
 
           {menuVisible && (
-            <div className="absolute top-6 -left-6 bg-black bg-opacity-50 border border-gray-400 text-white w-52 shadow-lg rounded-lg sm:text-sm text-[10px] p-0.5">
+            <div className="absolute top-7 -left-6 bg-black bg-opacity-40 backdrop-blur-md shadow-xl  border-black border-opacity-20 text-white w-52 rounded-lg sm:text-[12px] text-[10px] p-0.5">
               <ul className="p-1">
                 <li
                   className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default"
-                  onClick={handleAboutClick} // Trigger About and hide the menu
+                  onClick={handleAboutClick}
                 >
                   About This Mac
                 </li>
-                <div className="h-px bg-gray-400 my-1"></div>
 
                 <li
                   className="px-1 py-0.5 rounded-md hover:bg-blue-400 cursor-default"
                   onClick={handleLogout}
                 >
-                  Log Out
+                  Shut Down...
                 </li>
               </ul>
             </div>
@@ -112,8 +126,10 @@ const Topbar = () => {
 
         <div className="text-right text-sm flex items-center space-x-2">
           {batteryLevel !== null && (
-            <div className="flex items-center space-x-1">
-              <span className="text-2xl">{getBatteryIcon()}</span>
+            <div className="flex items-center space-x-1 cursor-default" onClick={handleBatteryClick}>
+              <span className="text-2xl">
+                {getBatteryIcon()}
+              </span>
               <span className="text-xs">{batteryLevel}%</span>
             </div>
           )}
@@ -122,6 +138,17 @@ const Topbar = () => {
           </div>
         </div>
       </nav>
+
+      {batteryInfoVisible && (
+        <div className="absolute border w-56 border-black border-opacity-20 top-8 right-2 bg-black bg-opacity-30 backdrop-blur-md shadow-xl p-4 text-[12px] rounded-lg text-white z-20">
+          <p className="flex justify-between">
+            <span>Battery Level</span>
+            <span>{batteryLevel}%</span>
+          </p>
+          <p>Power Source: {getBatterySource()}</p>
+        </div>
+      )}
+
       {showAbout && <About setShowAbout={() => setShowAbout(false)} />}
     </div>
   );
