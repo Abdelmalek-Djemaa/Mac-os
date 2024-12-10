@@ -24,7 +24,7 @@ const Folder = ({ setShowFolder, folderName }) => {
           <div className="flex flex-col justify-start items-start sm:max-w-[200px] max-w-[100px] shadow-sm shadow-black w-full min-h-[50%] rounded-l-xl bg-gray-700">
             <div className="iteractive top-0 left-0 mb-2 p-4 flex relative">
               <div
-                className="group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-pointer z-10"
+                className="group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-default z-10"
                 onClick={setShowFolder}
               >
                 <span className="hidden group-hover:block sm:text-[10px] text-[8px] text-gray-900 font-bold">
@@ -41,7 +41,7 @@ const Folder = ({ setShowFolder, folderName }) => {
               {items.map((item) => (
                 <li
                   key={item.id}
-                  className="flex items-center w-full py-2 sm:px-4 px-2 text-white cursor-pointer hover:bg-gray-600 rounded-md"
+                  className="flex items-center w-full py-2 sm:px-4 px-2 text-white cursor-default hover:bg-gray-600 rounded-md"
                   onClick={() => handleItemClick(item.label)} // Set the selected item when clicked
                 >
                   <div className="mr-2">{item.icon}</div>
@@ -54,7 +54,7 @@ const Folder = ({ setShowFolder, folderName }) => {
             <nav className="flex flex-row top-0 justify-between items-center w-full px-3 py-4 absolute border-b border-opacity-30 border-black">
               <span className="font-bold text-sm">{folderName}</span>
               <ul className="iteractive flex items-center space-x-3 text-lg">
-                <li className="cursor-pointer font-bold">
+                <li className="cursor-default font-bold">
                   <RiInformation2Line />
                 </li>
               </ul>
