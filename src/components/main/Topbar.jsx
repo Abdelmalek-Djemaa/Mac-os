@@ -11,7 +11,7 @@ const Topbar = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [batteryLevel, setBatteryLevel] = useState(null);
   const [batteryCharging, setBatteryCharging] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
   const [showAbout, setShowAbout] = useState(false);
   const [batteryInfoVisible, setBatteryInfoVisible] = useState(false);
   const [dateTimePanelVisible, setDateTimePanelVisible] = useState(false);
@@ -69,9 +69,8 @@ const Topbar = () => {
     if (batteryLevel > 25) return <IoBatteryHalf />;
     return <IoBatteryDead />;
   };
-
-  const handleLogoClick = () => {
-    setMenuVisible((prev) => !prev);
+  const handleMenuClick = (menu) => {
+    setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
   };
 
   const handleLogout = () => {
@@ -79,7 +78,7 @@ const Topbar = () => {
   };
 
   const handleAboutClick = () => {
-    setMenuVisible(false);
+    setOpenMenu(null);
     setShowAbout(true);
   };
 
@@ -106,34 +105,45 @@ const Topbar = () => {
   return (
     <div>
       <nav className="flex justify-between items-center px-4 py-0.5 bg-black bg-opacity-50 text-white fixed top-0 w-full z-10">
-        <div className="relative flex items-center space-x-3">
+      <div className="relative flex items-center space-x-3">
+          {/* Apple Logo Menu */}
           <img
             src={logo}
             alt="Logo"
             className="w-4 h-4 object-contain cursor-default"
-            onClick={handleLogoClick}
+            onClick={() => handleMenuClick('apple')}
           />
+
+          {/* Finder Menu */}
           <ul className="flex items-center space-x-3 text-sm">
-            <li className="font-bold">Finder</li>
-            <li>File</li>
+            <li className="font-bold cursor-pointer" onClick={() => handleMenuClick('finder')}>Finder</li>
+            <li className="cursor-pointer" onClick={() => handleMenuClick('file')}>File</li>
           </ul>
 
-          {menuVisible && (
-            <div className="absolute top-7 -left-6 bg-black bg-opacity-40 backdrop-blur-md shadow-xl border-black border-opacity-20 text-white w-52 rounded-lg sm:text-[12px] text-[10px] p-0.5">
+          {/* Dropdown Menus */}
+          {openMenu === 'apple' && (
+            <div className="absolute top-7 -left-5 bg-black bg-opacity-40 backdrop-blur-md shadow-xl border-black border-opacity-20 text-white w-52 rounded-lg text-sm p-0.5">
               <ul className="p-1">
-                <li
-                  className="p-1 rounded-md hover:bg-blue-400 cursor-default"
-                  onClick={handleAboutClick}
-                >
-                  About This Mac
-                </li>
+                <li className="p-1 rounded-md hover:bg-blue-400 cursor-default" onClick={handleAboutClick}>About This Mac</li>
+                <li className="p-1 rounded-md hover:bg-blue-400 cursor-default" onClick={handleLogout}>Shut Down...</li>
+              </ul>
+            </div>
+          )}
 
-                <li
-                  className="p-1 rounded-md hover:bg-blue-400 cursor-default"
-                  onClick={handleLogout}
-                >
-                  Shut Down...
-                </li>
+          {openMenu === 'finder' && (
+            <div className="absolute top-7 left-4 bg-black bg-opacity-40 backdrop-blur-md shadow-xl border-black border-opacity-20 text-white w-52 rounded-lg text-sm p-0.5">
+              <ul className="p-1">
+                <li className="p-1 rounded-md hover:bg-blue-400 cursor-default">New Window</li>
+                <li className="p-1 rounded-md hover:bg-blue-400 cursor-default">Close Window</li>
+              </ul>
+            </div>
+          )}
+
+          {openMenu === 'file' && (
+            <div className="absolute top-7 left-16 bg-black bg-opacity-40 backdrop-blur-md shadow-xl border-black border-opacity-20 text-white w-52 rounded-lg text-sm p-0.5">
+              <ul className="p-1">
+                <li className="p-1 rounded-md hover:bg-blue-400 cursor-default">New File</li>
+                <li className="p-1 rounded-md hover:bg-blue-400 cursor-default">Save File</li>
               </ul>
             </div>
           )}
