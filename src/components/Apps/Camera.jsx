@@ -42,13 +42,13 @@ const Camera = ({ setShowCamera }) => {
   return (
     <div className='fixed top-0 bottom-0 right-0 left-0 flex justify-center items-center p-4'>
       <Draggable nodeRef={cameraRef} cancel=".iteractive">
-        <div className="relative bg-black max-w-xl w-full h-full sm:max-h-[430px] max-h-[330px] flex flex-col items-center justify-center rounded-xl z-[998] shadow-sm shadow-black" ref={cameraRef}>
+        <div className="relative bg-black max-w-xl w-full h-full sm:max-h-[430px] max-h-[330px] flex flex-col items-center justify-center rounded-xl z-[998]" ref={cameraRef}>
           <div className="absolute top-2 w-full flex justify-center items-center">
-            <span className="font-medium text-sm text-white z-[1000]">
+            <span className="font-medium text-sm text-black z-[1000]">
               Photo Booth
             </span>
           </div>
-          <div className="iteractive absolute top-0 left-0 p-2.5 flex w-full bg-gray-800 rounded-t-xl z-[999]">
+          <div className="iteractive absolute top-0 left-0 p-2.5 flex w-full bg-white rounded-t-xl z-[999]">
             <div
               className="group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-pointer z-[1000]"
               onClick={handleExit}
@@ -66,7 +66,7 @@ const Camera = ({ setShowCamera }) => {
             playsInline
             style={{ width: '100%', height: '100%', borderRadius: '0.75rem' }}
           />
-          <div className="absolute bottom-0 left-0 sm:py-3 py-2 flex justify-center items-center w-full bg-gray-800 rounded-b-xl z-[999]">
+          <div className="absolute bottom-0 left-0 sm:py-3 py-2 flex justify-center items-center w-full  bg-white bg-opacity-90 backdrop-blur-md rounded-b-xl z-[999]">
             <div className="iteractive flex justify-center items-center sm:w-[40px] sm:h-[40px] w-[35px] h-[35px] rounded-full bg-red-500">
               <FaCamera className="text-white" />
             </div>

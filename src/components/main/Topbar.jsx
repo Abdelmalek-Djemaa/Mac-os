@@ -104,7 +104,7 @@ const Topbar = () => {
 
   return (
     <div>
-      <nav className="flex justify-between items-center px-4 py-0.5 bg-black bg-opacity-50 text-white fixed top-0 w-full z-10">
+      <nav className="flex justify-between items-center px-4 py-0.5 bg-black bg-opacity-40 backdrop-blur-md text-white fixed top-0 w-full z-10">
       <div className="relative flex items-center space-x-3">
           {/* Apple Logo Menu */}
           <img
@@ -116,13 +116,13 @@ const Topbar = () => {
 
           {/* Finder Menu */}
           <ul className="flex items-center space-x-3 text-sm">
-            <li className="font-bold cursor-pointer" onClick={() => handleMenuClick('finder')}>Finder</li>
-            <li className="cursor-pointer" onClick={() => handleMenuClick('file')}>File</li>
+            <li className="font-bold cursor-default" onClick={() => handleMenuClick('finder')}>Finder</li>
+            <li className="cursor-default" onClick={() => handleMenuClick('file')}>File</li>
           </ul>
 
           {/* Dropdown Menus */}
           {openMenu === 'apple' && (
-            <div className="absolute top-7 -left-5 bg-black bg-opacity-40 backdrop-blur-md shadow-xl border-black border-opacity-20 text-white w-52 rounded-lg text-sm p-0.5">
+            <div className="absolute top-7 -left-5 bg-white bg-opacity-40 backdrop-blur-md shadow-xl border-white border-opacity-20 text-gray-800 w-52 rounded-lg text-sm p-0.5">
               <ul className="p-1">
                 <li className="p-1 rounded-md hover:bg-blue-400 cursor-default" onClick={handleAboutClick}>About This Mac</li>
                 <li className="p-1 rounded-md hover:bg-blue-400 cursor-default" onClick={handleLogout}>Shut Down...</li>
@@ -131,7 +131,7 @@ const Topbar = () => {
           )}
 
           {openMenu === 'finder' && (
-            <div className="absolute top-7 left-4 bg-black bg-opacity-40 backdrop-blur-md shadow-xl border-black border-opacity-20 text-white w-52 rounded-lg text-sm p-0.5">
+            <div className="absolute top-7 left-4 bg-white bg-opacity-40 backdrop-blur-md shadow-xl border-white border-opacity-20 text-gray-800 w-52 rounded-lg text-sm p-0.5">
               <ul className="p-1">
                 <li className="p-1 rounded-md hover:bg-blue-400 cursor-default">New Window</li>
                 <li className="p-1 rounded-md hover:bg-blue-400 cursor-default">Close Window</li>
@@ -140,7 +140,7 @@ const Topbar = () => {
           )}
 
           {openMenu === 'file' && (
-            <div className="absolute top-7 left-16 bg-black bg-opacity-40 backdrop-blur-md shadow-xl border-black border-opacity-20 text-white w-52 rounded-lg text-sm p-0.5">
+            <div className="absolute top-7 left-16 bg-white bg-opacity-40 backdrop-blur-md shadow-xl border-white border-opacity-20 text-gray-800 w-52 rounded-lg text-sm p-0.5">
               <ul className="p-1">
                 <li className="p-1 rounded-md hover:bg-blue-400 cursor-default">New File</li>
                 <li className="p-1 rounded-md hover:bg-blue-400 cursor-default">Save File</li>
@@ -163,7 +163,7 @@ const Topbar = () => {
       </nav>
 
       {batteryInfoVisible && (
-        <div className="absolute border w-56 border-black border-opacity-20 top-8 right-2 bg-black bg-opacity-30 backdrop-blur-md shadow-xl p-4 text-[12px] rounded-lg text-white z-20">
+        <div className="absolute border w-56 border-white border-opacity-20 top-8 right-2 bg-white bg-opacity-40 backdrop-blur-md shadow-xl p-4 text-[12px] rounded-lg text-gray-800 z-20">
           <p className="flex justify-between">
             <span>Battery Level</span>
             <span>{batteryLevel}%</span>
