@@ -1,71 +1,68 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { FaXmark } from 'react-icons/fa6';
-import macbook from '../../assets/macbook.png'
-
+import macbook from '../../assets/macbook.png';
+import { UAParser } from 'ua-parser-js';
 const About = ({ setShowAbout }) => {
+  // State for system details
   const [processor, setProcessor] = useState('Unknown');
   const [graphics, setGraphics] = useState('Unknown');
   const [memory, setMemory] = useState('Unknown');
+  const [browser, setBrowser] = useState('Unknown');
+  const [os, setOS] = useState('Unknown');
   const aboutRef = useRef(null);
 
+  // Function to get user agent details using UAParser
+  const getUserAgentDetails = () => {
+    const parser = new UAParser();
+    return {
+      browser: parser.getBrowser(),
+      os: parser.getOS(),
+      device: parser.getDevice(),
+      cpu: parser.getCPU(),
+    };
+  };
+
   useEffect(() => {
+    const { browser, os, cpu } = getUserAgentDetails();
+    setBrowser(browser.name || 'Unknown');
+    setOS(os|| 'Unknown');
+    setProcessor(cpu.architecture || 'Unknown');
+
     if (navigator.deviceMemory) {
       setMemory(`${navigator.deviceMemory} GB`);
     }
 
     const getGraphicsInfo = () => {
-        const canvas = document.createElement('canvas');
-        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-        
-        if (gl) {
-          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-          if (debugInfo) {
-            const fullInfo = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-            
-            // Extract the graphics card name using a regular expression
-            const match = fullInfo.match(/\((?:[^,]+), ([^,]+),/);
-            if (match && match[1]) {
-              setGraphics(match[1].trim());
-            } else {
-              setGraphics(fullInfo);
-            }
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      
+      if (gl) {
+        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        if (debugInfo) {
+          const fullInfo = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+          
+          // Extract the graphics card name using a regular expression
+          const match = fullInfo.match(/\((?:[^,]+), ([^,]+),/);
+          if (match && match[1]) {
+            setGraphics(match[1].trim());
           } else {
-            setGraphics('Graphics info not available');
+            setGraphics(fullInfo);
           }
         } else {
-          setGraphics('WebGL not supported');
+          setGraphics('Graphics info not available');
         }
-      };
-      getGraphicsInfo();
-
-    const userAgent = navigator.userAgent;
-
-    if (/Intel/i.test(userAgent)) {
-      setProcessor('Intel-based Processor');
-    } else if (/AMD/i.test(userAgent)) {
-      setProcessor('AMD-based Processor');
-    } else if (/ARM/i.test(userAgent)) {
-      setProcessor('ARM-based Processor');
-    } else if (/Snapdragon/i.test(userAgent)) {
-      setProcessor('Qualcomm Snapdragon Processor');
-    } else if (/Exynos/i.test(userAgent)) {
-      setProcessor('Samsung Exynos Processor');
-    } else if (/AppleWebKit/i.test(userAgent) && /iPhone|iPad|iPod/i.test(userAgent)) {
-      setProcessor('Apple A-series Processor');
-    } else if (/Kirin/i.test(userAgent)) {
-      setProcessor('Huawei Kirin Processor');
-    } else if (/Mediatek/i.test(userAgent) || /MT\d+/i.test(userAgent)) {
-      setProcessor('MediaTek Processor');
-    } else {
-      setProcessor('CPU info not available');
-    }
+      } else {
+        setGraphics('WebGL not supported');
+      }
+    };
+    getGraphicsInfo();
   }, []);
 
   return (
     <div className="fixed w-full h-full top-0 left-0 flex justify-center items-center z-20 p-4">
         <Draggable nodeRef={aboutRef} cancel=".interactive">
-            <div className=" text-gray-800 max-w-[270px] w-full text-[12px] p-6 rounded-lg shadow-xl relative bg-white bg-opacity-50 backdrop-blur-md" ref={aboutRef}>
+            <div className=" text-gray-800 max-w-[300px] w-full text-[12px] p-6 rounded-lg shadow-xl relative bg-white bg-opacity-50 backdrop-blur-md" ref={aboutRef}>
                 <div className="interactive absolute top-0 left-0 p-2.5 flex w-full z-[999]">
                     <div
                         className="group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-pointer z-[1000]"
@@ -86,22 +83,28 @@ const About = ({ setShowAbout }) => {
                 <div className="space-y-2">
                     <div className="flex justify-between items-center">
                         <span className="text-left text-black">Processor</span>
-                        <span className="ext-right">{processor}</span>
+                        <span className="text-right">{processor}</span>
                     </div>
 
                     <div className="flex justify-between items-center">
                         <span className="text-left text-black">Graphics</span>
-                        <span className="w-[60%]  text-right">{graphics}</span>
+                        <span className="w-[60%] text-right">{graphics}</span>
                     </div>
 
                     <div className="flex justify-between items-center">
-                        <span className="text-lef text-blackt">Memory</span>
+                        <span className="text-left text-black">Memory</span>
                         <span className="text-right">{memory}</span>
                     </div>
 
                     <div className="flex justify-between items-center">
-                        <span className="text-left text-black">Operating System</span>
-                        <span className="text-right">{navigator.platform}</span>
+                      <span className="text-left text-black">Operating System</span>
+                      <span className="text-right">{`${os.name} ${os.version}`}</span>
+                    </div>
+
+
+                    <div className="flex justify-between items-center">
+                        <span className="text-left text-black">Browser</span>
+                        <span className="text-right">{browser}</span>
                     </div>
                 </div>
                 <div className='flex flex-col justify-center items-center mt-8 text-[10px] interactive'>
