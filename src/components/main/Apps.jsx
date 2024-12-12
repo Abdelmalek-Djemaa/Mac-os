@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import bg from "../../assets/ventura.jpg";
+import bg from "../../assets/ventura.webp";
 import photobooth from "../../assets/photo-booth.webp";
+import preview from "../../assets/preview.webp";
 import terminal from "../../assets/terminal.webp";
+import calendar from "../../assets/calendar.webp";
 import { FaSearch } from 'react-icons/fa';
 
 const Apps = ({ setShowCamera, setShowTerminal }) => {
@@ -20,6 +22,37 @@ const Apps = ({ setShowCamera, setShowTerminal }) => {
       image: terminal,
       onClick: setShowTerminal,
     },
+    {
+      name: 'preview',
+      image: preview,
+      onClick: setShowCamera,
+    },
+    {
+      name: 'calendar',
+      image: calendar,
+      onClick: setShowTerminal,
+    },
+    {
+      name: 'Photo Booth',
+      image: photobooth,
+      onClick: setShowCamera,
+    },
+    {
+      name: 'Terminal',
+      image: terminal,
+      onClick: setShowTerminal,
+    },
+    {
+      name: 'preview',
+      image: preview,
+      onClick: setShowCamera,
+    },
+    {
+      name: 'calendar',
+      image: calendar,
+      onClick: setShowTerminal,
+    },
+    
   ];
 
   // Filter apps based on the search term
@@ -29,7 +62,8 @@ const Apps = ({ setShowCamera, setShowTerminal }) => {
 
   return (
     <motion.div
-      className="fixed w-full top-0 left-0 right-0 bottom-0 h-full flex justify-center items-center z-20 bg-black"
+      className="fixed w-full top-0 left-0 right-0 bottom-0 h-full flex justify-center items-center z-20 bg-cover bg-center"
+      style={{ backgroundImage: `url(${bg})` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -38,18 +72,14 @@ const Apps = ({ setShowCamera, setShowTerminal }) => {
         ease: 'easeInOut',
       }}
     >
-      <div
-        className="absolute top-0 bottom-0 left-0 right-0 blur-sm bg-cover bg-center"
-        style={{ backgroundImage: `url(${bg})` }}
-      ></div>
       <motion.div
         initial={{ opacity: 0, scale: 1.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
-          duration: 0.7,
+          duration: 0.5,
           ease: 'easeInOut',
         }}
-        className="w-full h-full flex flex-col justify-center items-center relative"
+        className="w-full h-full flex flex-col items-center relative bg-white bg-opacity-5 backdrop-blur-md"
       >
         {/* Search Input */}
         <div className="absolute top-5 sm:w-[250px] w-[220px]">
@@ -66,15 +96,15 @@ const Apps = ({ setShowCamera, setShowTerminal }) => {
         </div>
 
         {/* Filtered Apps */}
-        <div className="flex flex-wrap justify-start space-x-16 items-start w-full h-full sm:p-32 py-32 px-8">
+        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-8 w-full sm:px-32 px-8 pt-24 sm:pt-32">
           {filteredApps.map((app, index) => (
             <div
               key={index}
               className="flex flex-col justify-center items-center cursor-pointer"
               onClick={app.onClick}
             >
-              <img src={app.image} className="sm:w-[75px] w-16" alt={app.name} />
-              <span className="text-white font-medium text-sm">{app.name}</span>
+              <img src={app.image} className="w-[70px]" alt={app.name} />
+              <span className="text-white font-medium text-[12px] mt-2">{app.name}</span>
             </div>
           ))}
         </div>

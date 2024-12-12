@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { FaXmark } from 'react-icons/fa6';
-import macbook from '../../assets/macbook.png';
+import macbook from '../../assets/macbook.webp';
 import { UAParser } from 'ua-parser-js';
 const About = ({ setShowAbout }) => {
   // State for system details

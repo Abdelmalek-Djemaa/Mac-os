@@ -5,15 +5,21 @@ import launchpad from "../../assets/launchpad.webp";
 import Apps from './Apps';
 import Folder from './Folder';
 import Camera from '../Apps/Camera';
+import Terminal from '../Apps/Terminal';
 
 const Bottombar = () => {
   const [showApps, setShowApps] = useState(false);
   const [showFinder, setShowFinder] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
+  const [showTerminal, setShowTerminal] = useState(false);
 
   const handleShowCamera = () => {
-    setShowApps(false); // Close apps when showing the camera
+    setShowApps(false);
     setShowCamera(true);
+  };
+  const handleShowTerminal = () => {
+    setShowApps(false);
+    setShowTerminal(true);
   };
 
   return (
@@ -43,10 +49,15 @@ const Bottombar = () => {
           <Camera setShowCamera={() => setShowCamera(false)} />
         </div>
       )}
+      {showTerminal && (
+        <div className="fixed top-0 bottom-0 right-0 left-0">
+          <Terminal setShowTerminal={() => setShowTerminal(false)} />
+        </div>
+      )}
 
       <AnimatePresence>
         {showApps && (
-          <Apps setShowCamera={handleShowCamera} />
+          <Apps setShowCamera={handleShowCamera} setShowTerminal={handleShowTerminal} />
         )}
       </AnimatePresence>
     </div>

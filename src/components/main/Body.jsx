@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import folder from '../../assets/folder.svg'
+import folder from '../../assets/folder.webp'
 import Folder from './Folder';
 
 const Body = () => {
