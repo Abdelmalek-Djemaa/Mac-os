@@ -87,6 +87,7 @@ const Topbar = () => {
   };
 
   const handleDateTimeClick = () => {
+    setOpenMenu(null);
     setDateTimePanelVisible((prev) => !prev);
   };
 
