@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import finder from "../../assets/finder.svg";
+import finder from "../../assets/finder.webp";
 import launchpad from "../../assets/launchpad.webp";
 import Apps from './Apps';
 import Folder from './Folder';
@@ -21,9 +21,9 @@ const Bottombar = () => {
       <div className='flex justify-center items-center bottom-0 fixed p-2 w-full z-[999]'>
         <nav className="flex justify-center items-center px-4 py-2 bg-white bg-opacity-40 backdrop-blur-md max-w-md rounded-3xl border-white border-opacity-20">
           <div className="flex items-center">
-            <ul className="flex items-center space-x-4">
+            <ul className="flex items-center space-x-2">
               <li onClick={() => setShowFinder(true)}>
-                <img src={finder} className='w-12 rounded-xl' />
+                <img src={finder} className='w-[60px]' />
               </li>
               <li onClick={() => setShowApps(!showApps)}>
                 <img src={launchpad} className='w-[60px]' />

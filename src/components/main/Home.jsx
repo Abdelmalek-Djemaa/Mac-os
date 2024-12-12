@@ -1,5 +1,5 @@
 import React from 'react';
-import bg from "../../assets/ventura.webp";
+import bg from "../../assets/ventura.jpg";
 import Topbar from './Topbar';
 import Bottombar from './Bottombar';
 import Body from './Body';

@@ -71,6 +71,8 @@ const Topbar = () => {
   };
   const handleMenuClick = (menu) => {
     setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
+    setBatteryInfoVisible(false);
+    setDateTimePanelVisible(false);
   };
 
   const handleLogout = () => {
@@ -80,14 +82,18 @@ const Topbar = () => {
   const handleAboutClick = () => {
     setOpenMenu(null);
     setShowAbout(true);
+    setBatteryInfoVisible(false);
   };
 
   const handleBatteryClick = () => {
     setBatteryInfoVisible((prev) => !prev);
+    setDateTimePanelVisible(false);
+    setOpenMenu(null);
   };
 
   const handleDateTimeClick = () => {
     setOpenMenu(null);
+    setBatteryInfoVisible(false);
     setDateTimePanelVisible((prev) => !prev);
   };
 

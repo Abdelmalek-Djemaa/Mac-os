@@ -26,7 +26,7 @@ const About = ({ setShowAbout }) => {
   useEffect(() => {
     const { browser, os, cpu } = getUserAgentDetails();
     setBrowser(browser.name || 'Unknown');
-    setOS(os|| 'Unknown');
+    setOS(os.name|| 'Unknown');
     setProcessor(cpu.architecture || 'Unknown');
 
     if (navigator.deviceMemory) {
@@ -98,9 +98,8 @@ const About = ({ setShowAbout }) => {
 
                     <div className="flex justify-between items-center">
                       <span className="text-left text-black">Operating System</span>
-                      <span className="text-right">{`${os.name} ${os.version}`}</span>
+                      <span className="text-right">{os}</span>
                     </div>
-
 
                     <div className="flex justify-between items-center">
                         <span className="text-left text-black">Browser</span>
