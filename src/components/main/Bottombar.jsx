@@ -21,6 +21,10 @@ const Bottombar = () => {
     setShowApps(false);
     setShowTerminal(true);
   };
+  const handleShowFinder = () => {
+    setShowApps(false);
+    setShowFinder(true);
+  };
 
   return (
     <div className='relative'>
@@ -28,7 +32,7 @@ const Bottombar = () => {
         <nav className="flex justify-center items-center px-4 py-2 bg-white bg-opacity-40 backdrop-blur-md max-w-md rounded-3xl border-white border-opacity-20">
           <div className="flex items-center">
             <ul className="flex items-center space-x-2">
-              <li onClick={() => setShowFinder(true)}>
+              <li onClick={handleShowFinder}>
                 <img src={finder} className='w-[60px]' />
               </li>
               <li onClick={() => setShowApps(!showApps)}>
