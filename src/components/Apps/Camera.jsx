@@ -53,6 +53,10 @@ const Camera = ({ setShowCamera }) => {
       // Draw the current video frame onto the canvas
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
+      // Play shutter sound
+      const shutterSound = new Audio('/shutter.mp3'); // Path to the shutter sound file
+      shutterSound.play();
+
       // Create a download link for the image
       const image = canvas.toDataURL('image/png');
       const link = document.createElement('a');
