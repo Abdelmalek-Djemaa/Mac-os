@@ -63,16 +63,16 @@ const Terminal = ({ setShowTerminal }) => {
     <div className="fixed top-0 bottom-0 right-0 left-0 flex justify-center items-center p-4">
       <Draggable nodeRef={terminalRef} cancel=".interactive">
         <div
-          className="flex max-w-lg w-full min-h-[50%] justify-center items-start bg-white bg-opacity-80 backdrop-blur-md rounded-xl"
+          className="flex max-w-lg w-full max-h-[300px] h-full justify-center items-start bg-white bg-opacity-80 backdrop-blur-md rounded-xl"
           ref={terminalRef}
         >
           <div className="absolute top-2 w-full flex justify-center items-center">
             <span className="font-medium text-sm text-black z-[1000]">Terminal</span>
           </div>
 
-          <div className="interactive absolute top-0 left-0 p-2.5 flex w-full bg-white rounded-t-xl z-[999]">
+          <div className="absolute top-0 left-0 p-2.5 flex w-full bg-white rounded-t-xl z-[999]">
             <div
-              className="group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-pointer z-[1000]"
+              className="interactive group sm:h-3 sm:w-3 h-2.5 w-2.5 bg-red-500 rounded-full flex justify-center items-center cursor-pointer z-[1000]"
               onClick={setShowTerminal}
             >
               <span className="hidden group-hover:block sm:text-[10px] text-[8px] text-gray-900 font-bold">
