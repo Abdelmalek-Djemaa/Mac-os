@@ -48,7 +48,7 @@ To get started with the Mac OS Experience Simulation, follow these steps:
 
 Once the development server is running, open your browser and navigate to:
 
-[http://localhost:3000](http://localhost:3000)
+[http://localhost:3000](http://localhost:5173)
 
 Or view the live demo here:
 
