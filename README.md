@@ -1,5 +1,5 @@
 # Mac OS Experience Simulation
-![Demo Image](https://github.com/Abdelmalek-Djemaa/Mac-os/blob/main/src/assets/demo.jpg)
+![Demo Image](https://github.com/Abdelmalek-Djemaa/Mac-os/blob/main/src/assets/demo.png)
 
 ## About
 
